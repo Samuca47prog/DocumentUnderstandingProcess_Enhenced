@@ -1,0 +1,38 @@
+INVOICE
+
+Sirius Cybernetics Corp.
+
+4592 Bell Street New York, NY 10018
+
+Bill To
+
+CHOAM 27 Shield Wall Ave,
+
+Ship To CHOAM 27 Shield Wall Ave,
+
+Invoice # Invoice Date P.O.#
+
+Carthag, CH 1965 Carthag, CH 1965
+
+Arrakis
+
+Arrakis
+
+Due Date
+
+890127 27/01/2016 16012633
+
+26/02/2016
+
+Qty   Description                          Unit Price   Amount    
+10    Nutrimatic Drinks Dispenser          4,200.00     42,000.00 
+17    Shipboard Computer "Eddie"           8,402.00     142,834.00
+3     Happy Vertical People Transporters   21,000.00    63,000.00 
+
+Subtotal    247,834.00 
+VAT 19.0%   47,088.46  
+Total       $294,922.46
+
+Terms & Conditions Payment is due within 30 days
+
+Thank you
