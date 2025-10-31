@@ -134,7 +134,7 @@
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Pre-extraction processing and Data Extraction workflow. Extractors are process-dependant!&#xA;&#xA;Outputs whether Human validation is required.asdasd" DisplayName="Extract" sap:VirtualizedContainerService.HintSize="1313.3333333333333,1754" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Pre-extraction processing and Data Extraction workflow. Extractors are process-dependant!&#xA;&#xA;Outputs whether Human validation is required.asdasd" DisplayName="Extract" sap:VirtualizedContainerService.HintSize="1313.3333333333333,1394" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -331,34 +331,11 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:RetryScope>
     <ui:Comment sap:VirtualizedContainerService.HintSize="958.6666666666666,146.66666666666666" sap2010:WorkflowViewState.IdRef="Comment_1" Text="An Extractor that uses a paid license might incur extra costs when re-executing. This should be taken into consideration for the number of retries." />
-    <Sequence DisplayName="Create Extraction Record" sap:VirtualizedContainerService.HintSize="450,582.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="d:ExtractionResult" Name="ExtractionResultsRecord" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionResultRecord - Invoke Workflow File (DataService\DataService_CreateExtractionResultRecord.xaml)" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionResultRecord.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="in_DocumentRecord">[in_DocumentRecord]</InArgument>
-          <InArgument x:TypeArguments="p2:ExtractionResult" x:Key="in_ExtractionResults">[out_ExtractionResults]</InArgument>
-          <OutArgument x:TypeArguments="d:ExtractionResult" x:Key="out_ExtractionResultRecord">[ExtractionResultsRecord]</OutArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionFields - Invoke Workflow File (DataService\DataService_CreateExtractionFields.xaml)" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionFields.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="p2:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
-          <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionTables - Invoke Workflow File (DataService\DataService_CreateExtractionTables.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionTables.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="p2:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
-          <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-    </Sequence>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Helper_CreateExtractionRecordFieldsAndTables - Invoke Workflow File (DataService\Helper_CreateExtractionRecordFieldsAndTables.xaml)" sap:VirtualizedContainerService.HintSize="958.6666666666666,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DataService\Helper_CreateExtractionRecordFieldsAndTables.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="in_DocumentRecord">[in_DocumentRecord]</InArgument>
+        <InArgument x:TypeArguments="p2:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>
