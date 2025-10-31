@@ -1,0 +1,443 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DataService_CreateExtractionTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_ExtractionResults" Type="InArgument(p:ExtractionResult)" />
+    <x:Property Name="ExtractionResultsRecord" Type="InArgument(d:ExtractionResult)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Taxonomy</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities.DataExtraction</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.SmartData.PositionBasedExtraction.Storage</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities</x:String>
+      <x:String>UiPath.DU.Shared.Utils</x:String>
+      <x:String>UiPath.DataService.Activities</x:String>
+      <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>UiPath.DataService.Activities.Models</x:String>
+      <x:String>DocumentUnderstandingProcess_Enhenced</x:String>
+      <x:String>System.Runtime.CompilerServices</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.SmartData.PositionBasedExtraction</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Activities.Core</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Definition</AssemblyReference>
+      <AssemblyReference>DataService.DocumentUnderstandingProcess_Enhenced</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.CompilerServices.VisualC</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="992.6666666666666,1997.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Create Extraction Tables" sap:VirtualizedContainerService.HintSize="648.6666666666666,1974.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:ICollection(d:ExtractionTables)" Name="extractionTablesList" />
+        <Variable x:TypeArguments="scg:IList(d:ExtractionTables)" Name="outputRecords" />
+        <Variable x:TypeArguments="scg:IList(s:Tuple(x:String, d:ExtractionTables))" Name="failedRecords" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign - Create extraction tables list" sap:VirtualizedContainerService.HintSize="614.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="scg:ICollection(d:ExtractionTables)">[extractionTablesList]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="scg:ICollection(d:ExtractionTables)">[New System.Collections.Generic.List(Of DocumentUnderstandingProcess_Enhenced.ExtractionTables)()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEach x:TypeArguments="p:ResultsTable" CurrentIndex="{x:Null}" DisplayName="For Each currentResultsTable" sap:VirtualizedContainerService.HintSize="614.6666666666666,1108.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[out_ExtractionResults.ResultsDocument.Tables]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="p:ResultsTable">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="p:ResultsTable" Name="currentResultsTable" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="580.6666666666666,960.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="p:ResultsTableCell" CurrentIndex="{x:Null}" DisplayName="For Each currentResultsTableCell" sap:VirtualizedContainerService.HintSize="546.6666666666666,900.6666666666666" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[out_ExtractionResults.ResultsDocument.Tables.FirstOrDefault().Values.FirstOrDefault().Cells]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="p:ResultsTableCell">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="p:ResultsTableCell" Name="currentResultsTableCell" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512.6666666666666,762" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="d:ExtractionTables" Name="extractionTables" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.6666666666667,486.6666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                        <ui:MultipleAssign.AssignOperations>
+                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="d:ExtractionTables">[extractionTables]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="d:ExtractionTables">[New ExtractionTables()]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionTables.ColumnIndex]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[currentResultsTableCell.ColumnIndex]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionTables.Confidence]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(if(currentResultsTableCell.Values is Nothing, 0D, currentResultsTableCell.Values.FirstOrDefault().Confidence))]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="d:ExtractionResult">[extractionTables.ExtractionResult]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="d:ExtractionResult">[ExtractionResultsRecord]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Boolean)">[extractionTables.IsHeader]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Boolean)">[currentResultsTableCell.IsMissing]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Boolean)">[extractionTables.IsMissing]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Boolean)">[currentResultsTableCell.IsHeader]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[extractionTables.Name]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[currentResultsTable.FieldName]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionTables.OcrConfidence]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(if(currentResultsTableCell.Values is Nothing, 0D, currentResultsTableCell.Values.FirstOrDefault().OcrConfidence))]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionTables.RowIndex]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[currentResultsTableCell.RowIndex]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionTables.TextType]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(if(currentResultsTableCell.Values is Nothing, 0D, currentResultsTableCell.Values.FirstOrDefault().TextType))]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[extractionTables.UnformattedValue]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[if(currentResultsTableCell.Values is Nothing, "", currentResultsTableCell.Values.FirstOrDefault().UnformattedValue)]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[extractionTables.Value]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[if(currentResultsTableCell.Values is Nothing, "", currentResultsTableCell.Values.FirstOrDefault().Value)]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                          </scg:List>
+                        </ui:MultipleAssign.AssignOperations>
+                      </ui:MultipleAssign>
+                      <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="478.6666666666667,167.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Add">
+                        <InvokeMethod.TargetObject>
+                          <InArgument x:TypeArguments="scg:ICollection(d:ExtractionTables)">[extractionTablesList]</InArgument>
+                        </InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="d:ExtractionTables">[extractionTables]</InArgument>
+                      </InvokeMethod>
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478.6666666666667,48" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uda:CreateEntityRecord x:TypeArguments="d:ExtractionTables" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Create Entity Record - Extraction Tables" EntityId="dfec5c04-62b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_2" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionTables() With {  .ColumnIndex = currentResultsTableCell.ColumnIndex,  .Confidence = CDec(currentResultsTableCell.Values.FirstOrDefault().Confidence),  .ExtractionResult = new ExtractionResult() With { .Id = ExtractionResultRecord.Id },  .IsHeader = currentResultsTableCell.IsMissing,  .IsMissing = currentResultsTableCell.IsHeader,  .Name = currentResultsTable.FieldName,  .OcrConfidence = CDec(currentResultsTableCell.Values.FirstOrDefault().OcrConfidence),  .RowIndex = currentResultsTableCell.RowIndex,  .TextType = currentResultsTableCell.Values.FirstOrDefault().TextType,  .UnformattedValue = currentResultsTableCell.Values.FirstOrDefault().UnformattedValue,  .Value = currentResultsTableCell.Values.FirstOrDefault().Value }]" TimeoutInMs="30000">
+                              <uda:CreateEntityRecord.State>
+                                <udam:RecordState>
+                                  <udam:RecordState.SelectedFields>
+                                    <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="11">
+                                      <udam:DynamicEntityField Id="edec5c04-62b6-f011-8e61-0022488a8a0d" Name="ColumnIndex">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Decimal">[currentResultsTableCell.ColumnIndex]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="f1ec5c04-62b6-f011-8e61-0022488a8a0d" Name="Confidence">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Decimal">[CDec(currentResultsTableCell.Values.FirstOrDefault().Confidence)]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="e9ec5c04-62b6-f011-8e61-0022488a8a0d" Name="ExtractionResult">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="s:Guid">[ExtractionResultRecord.Id]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="f3ec5c04-62b6-f011-8e61-0022488a8a0d" Name="IsHeader">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Boolean">[currentResultsTableCell.IsMissing]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="ecec5c04-62b6-f011-8e61-0022488a8a0d" Name="IsMissing">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Boolean">[currentResultsTableCell.IsHeader]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="ebec5c04-62b6-f011-8e61-0022488a8a0d" Name="Name">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:String">[currentResultsTable.FieldName]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="f2ec5c04-62b6-f011-8e61-0022488a8a0d" Name="OcrConfidence">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Decimal">[CDec(currentResultsTableCell.Values.FirstOrDefault().OcrConfidence)]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="eeec5c04-62b6-f011-8e61-0022488a8a0d" Name="RowIndex">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Decimal">[currentResultsTableCell.RowIndex]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="f0ec5c04-62b6-f011-8e61-0022488a8a0d" Name="TextType">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:Decimal">[currentResultsTableCell.Values.FirstOrDefault().TextType]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="862998ed-67b6-f011-8e61-0022488a8a0d" Name="UnformattedValue">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:String">[currentResultsTableCell.Values.FirstOrDefault().UnformattedValue]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                      <udam:DynamicEntityField Id="efec5c04-62b6-f011-8e61-0022488a8a0d" Name="Value">
+                                        <udam:DynamicEntityField.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:String">[currentResultsTableCell.Values.FirstOrDefault().Value]</InArgument>
+                                        </udam:DynamicEntityField.ArgumentValue>
+                                      </udam:DynamicEntityField>
+                                    </scg:List>
+                                  </udam:RecordState.SelectedFields>
+                                </udam:RecordState>
+                              </uda:CreateEntityRecord.State>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uda:CreateEntityRecord>
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:CommentOut>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEach>
+      <Sequence DisplayName="Create extraction tables in Bulk" sap:VirtualizedContainerService.HintSize="614.6666666666666,666" sap2010:WorkflowViewState.IdRef="Sequence_17">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch DisplayName="Try Catch - Create extraction tables records" sap:VirtualizedContainerService.HintSize="438.6666666666667,416" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+          <TryCatch.Try>
+            <uda:CreateMultipleEntityRecords x:TypeArguments="d:ExtractionTables" ContinueBatchOnFailure="True" ContinueOnError="False" DisplayName="Create Multiple Entity Records - Extraction tables" EntityId="dfec5c04-62b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" FailedRecords="[failedRecords]" sap:VirtualizedContainerService.HintSize="336,144.66666666666666" sap2010:WorkflowViewState.IdRef="CreateMultipleEntityRecords`1_3" InputRecords="[extractionTablesList]" OutputRecords="[outputRecords]" TimeoutInMs="30000" />
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.6666666666667,23.333333333333332" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <If Condition="[failedRecords.Count &gt; 0]" DisplayName="If - Had failed records" sap:VirtualizedContainerService.HintSize="450,392.6666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[failedRecords.Count.ToString +  &quot; failed extraction tables records out of total &quot; + outputRecords.Count.ToString]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438.6666666666667,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Extraction tables records created: &quot; + outputRecords.Count.ToString]" />
+      </Sequence>
+    </Sequence>
+  </Sequence>
+</Activity>

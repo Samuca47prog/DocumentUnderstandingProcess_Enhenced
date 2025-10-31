@@ -1,0 +1,390 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DataService_CreateExtractionFields" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_ExtractionResults" Type="InArgument(p:ExtractionResult)" />
+    <x:Property Name="ExtractionResultsRecord" Type="InArgument(d:ExtractionResult)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Taxonomy</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities.DataExtraction</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.SmartData.PositionBasedExtraction.Storage</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities</x:String>
+      <x:String>UiPath.DU.Shared.Utils</x:String>
+      <x:String>UiPath.DataService.Activities</x:String>
+      <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>UiPath.DataService.Activities.Models</x:String>
+      <x:String>DocumentUnderstandingProcess_Enhenced</x:String>
+      <x:String>System.Runtime.CompilerServices</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.SmartData.PositionBasedExtraction</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Activities.Core</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Definition</AssemblyReference>
+      <AssemblyReference>DataService.DocumentUnderstandingProcess_Enhenced</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.CompilerServices.VisualC</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1313.3333333333333,1706.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Create Extraction Fields" sap:VirtualizedContainerService.HintSize="580.6666666666666,1684" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:ICollection(d:ExtractionFields)" Name="extractionFieldsList" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign - Create extraction fields list" sap:VirtualizedContainerService.HintSize="546.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="scg:ICollection(d:ExtractionFields)">[extractionFieldsList]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="scg:ICollection(d:ExtractionFields)">[New System.Collections.Generic.List(Of DocumentUnderstandingProcess_Enhenced.ExtractionFields)()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEach x:TypeArguments="p:ResultsDataPoint" CurrentIndex="{x:Null}" DisplayName="For Each currentResultsDataPoint" sap:VirtualizedContainerService.HintSize="546.6666666666666,818" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[out_ExtractionResults.ResultsDocument.Fields]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="p:ResultsDataPoint">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="p:ResultsDataPoint" Name="currentResultsDataPoint" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512.6666666666666,670" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="d:ExtractionFields" Name="extractionFields" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.6666666666667,394.6666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="d:ExtractionFields">[extractionFields]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="d:ExtractionFields">[New extractionFields()]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionFields.Confidence]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().Confidence))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="d:ExtractionResult">[extractionFields.ExtractionResult]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="d:ExtractionResult">[ExtractionResultsRecord]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="s:Nullable(x:Boolean)">[extractionFields.IsMissing]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="s:Nullable(x:Boolean)">[currentResultsDataPoint.IsMissing]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[extractionFields.Name]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[currentResultsDataPoint.FieldName]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionFields.OcrConfidence]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().OcrConfidence))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="s:Nullable(x:Decimal)">[extractionFields.TextType]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="s:Nullable(x:Decimal)">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().TextType))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[extractionFields.UnformattedValue]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, "", currentResultsDataPoint.Values.FirstOrDefault().UnformattedValue)]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[extractionFields.Value]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, "", currentResultsDataPoint.Values.FirstOrDefault().Value)]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+              <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="478.6666666666667,167.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                <InvokeMethod.TargetObject>
+                  <InArgument x:TypeArguments="scg:ICollection(d:ExtractionFields)">[extractionFieldsList]</InArgument>
+                </InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="d:ExtractionFields">[extractionFields]</InArgument>
+              </InvokeMethod>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478.6666666666667,48" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uda:CreateEntityRecord x:TypeArguments="d:ExtractionFields" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Create Entity Record - Extraction Field" EntityId="237d62b9-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_4" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionFields() With {  .Confidence = CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().Confidence)),  .ExtractionResult = new ExtractionResult() With { .Id = ExtractionResultsRecord.Id },  .IsMissing = currentResultsDataPoint.IsMissing,  .Name = currentResultsDataPoint.FieldName,  .OcrConfidence = CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().OcrConfidence)),  .TextType = CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().TextType)),  .UnformattedValue = If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, &quot;&quot;, currentResultsDataPoint.Values.FirstOrDefault().UnformattedValue),  .Value = If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, &quot;&quot;, currentResultsDataPoint.Values.FirstOrDefault().Value) }]" TimeoutInMs="30000">
+                      <uda:CreateEntityRecord.State>
+                        <udam:RecordState>
+                          <udam:RecordState.SelectedFields>
+                            <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="8">
+                              <udam:DynamicEntityField Id="337d62b9-60b6-f011-8e61-0022488a8a0d" Name="Confidence">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:Decimal">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().Confidence))]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="2d7d62b9-60b6-f011-8e61-0022488a8a0d" Name="ExtractionResult">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="s:Guid">[ExtractionResultsRecord.Id]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="307d62b9-60b6-f011-8e61-0022488a8a0d" Name="IsMissing">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:Boolean">[currentResultsDataPoint.IsMissing]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="2f7d62b9-60b6-f011-8e61-0022488a8a0d" Name="Name">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:String">[currentResultsDataPoint.FieldName]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="347d62b9-60b6-f011-8e61-0022488a8a0d" Name="OcrConfidence">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:Decimal">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().OcrConfidence))]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="89848c1d-62b6-f011-8e61-0022488a8a0d" Name="TextType">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:Decimal">[CDec(If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, 0D, currentResultsDataPoint.Values.FirstOrDefault().TextType))]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="327d62b9-60b6-f011-8e61-0022488a8a0d" Name="UnformattedValue">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:String">[If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, "", currentResultsDataPoint.Values.FirstOrDefault().UnformattedValue)]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                              <udam:DynamicEntityField Id="317d62b9-60b6-f011-8e61-0022488a8a0d" Name="Value">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:String">[If(currentResultsDataPoint.Values.FirstOrDefault() Is Nothing, "", currentResultsDataPoint.Values.FirstOrDefault().Value)]</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
+                            </scg:List>
+                          </udam:RecordState.SelectedFields>
+                        </udam:RecordState>
+                      </uda:CreateEntityRecord.State>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uda:CreateEntityRecord>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEach>
+      <Sequence DisplayName="Create extraction fields in Bulk" sap:VirtualizedContainerService.HintSize="546.6666666666666,666" sap2010:WorkflowViewState.IdRef="Sequence_13">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="scg:IList(s:Tuple(x:String, d:ExtractionFields))" Name="failedRecords" />
+          <Variable x:TypeArguments="scg:IList(d:ExtractionFields)" Name="outputRecords" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch DisplayName="Try Catch - Create extraction fields records" sap:VirtualizedContainerService.HintSize="438.6666666666667,416" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch.Try>
+            <uda:CreateMultipleEntityRecords x:TypeArguments="d:ExtractionFields" ContinueBatchOnFailure="True" ContinueOnError="False" DisplayName="Create Multiple Entity Records" EntityId="237d62b9-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" FailedRecords="[failedRecords]" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="CreateMultipleEntityRecords`1_2" InputRecords="[extractionFieldsList]" OutputRecords="[outputRecords]" TimeoutInMs="30000" />
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.6666666666667,23.333333333333332" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <If Condition="[failedRecords.Count &gt; 0]" DisplayName="If - Had failed records" sap:VirtualizedContainerService.HintSize="334,184" sap2010:WorkflowViewState.IdRef="If_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[failedRecords.Count.ToString +  &quot; failed extraction fields records out of total &quot; + outputRecords.Count.ToString]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438.6666666666667,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Extraction fields records created: &quot; + outputRecords.Count.ToString]" />
+      </Sequence>
+    </Sequence>
+  </Sequence>
+</Activity>
