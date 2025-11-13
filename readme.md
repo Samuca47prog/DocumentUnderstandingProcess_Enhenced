@@ -66,6 +66,7 @@ CLASSIFICATIONVALIDATION {
 EXTRACTIONRESULT {
   GUID Id PK
   UNIQUEIDENTIFIER DocumentId FK
+  BIT Validated
   NVARCHAR(400) Bounds
   NVARCHAR(200) Language
   NVARCHAR(200) DocumentTypeId
@@ -79,6 +80,7 @@ EXTRACTIONFIELDS {
   BIT IsMissing
   NVARCHAR(2000) Value
   NVARCHAR(2000) UnformattedValue
+  NVARCHAR(2000) ValidatedValue
   DECIMAL(4) Confidence
   DECIMAL(4) OcrConfidence
   DECIMAL(2) TextType
@@ -97,6 +99,7 @@ EXTRACTIONTABLES {
   DECIMAL(4) OcrConfidence
   BIT IsHeader
   NVARCHAR(4000) UnformattedValue
+  NVARCHAR(2000) ValidatedValue
 }
 
 %% Relationships (cardinality from parent to children)

@@ -1,7 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Helper_CreateExtractionRecordFieldsAndTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Helper_CreateExtractionRecordFieldsAndTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DocumentRecord" Type="InArgument(d:DocumentUnderstanding)" />
     <x:Property Name="out_ExtractionResults" Type="InArgument(p:ExtractionResult)" />
+    <x:Property Name="out_ExtractionResultRecordId" Type="OutArgument(s:Guid)" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -40,6 +41,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -112,13 +114,13 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap:VirtualizedContainerService.HintSize="1313.3333333333333,745.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Create Extraction Record" sap:VirtualizedContainerService.HintSize="958.6666666666666,605.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Create Extraction Record" sap:VirtualizedContainerService.HintSize="468,722.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="d:ExtractionResult" Name="ExtractionResultsRecord" />
       </Sequence.Variables>
@@ -127,25 +129,33 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionResultRecord - Invoke Workflow File (DataService\DataService_CreateExtractionResultRecord.xaml)" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionResultRecord.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionResultRecord - Invoke Workflow File (DataService\DataService_CreateExtractionResultRecord.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionResultRecord.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="in_DocumentRecord">[in_DocumentRecord]</InArgument>
           <InArgument x:TypeArguments="p:ExtractionResult" x:Key="in_ExtractionResults">[out_ExtractionResults]</InArgument>
           <OutArgument x:TypeArguments="d:ExtractionResult" x:Key="out_ExtractionResultRecord">[ExtractionResultsRecord]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionFields - Invoke Workflow File (DataService\DataService_CreateExtractionFields.xaml)" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionFields.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionFields - Invoke Workflow File (DataService\DataService_CreateExtractionFields.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionFields.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="p:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
           <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionTables - Invoke Workflow File (DataService\DataService_CreateExtractionTables.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionTables.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateExtractionTables - Invoke Workflow File (DataService\DataService_CreateExtractionTables.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="DataService\DataService_CreateExtractionTables.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="p:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
           <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
+      <Assign DisplayName="Assign - Extraction Result Id" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Guid">[out_ExtractionResultRecordId]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Guid">[ExtractionResultsRecord.Id]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
   </Sequence>
 </Activity>
