@@ -107,26 +107,26 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1330.6666666666665,465.22399999999993" sap2010:WorkflowViewState.IdRef="Sequence_77">
+  <Sequence sap:VirtualizedContainerService.HintSize="1313.3333333333333,1420" sap2010:WorkflowViewState.IdRef="Sequence_77">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="FIELDS - Look for differences between Extraction and Validation to update field record" sap:VirtualizedContainerService.HintSize="452.6666666666667,48" sap2010:WorkflowViewState.IdRef="Sequence_72">
+    <Sequence DisplayName="FIELDS - Look for differences between Extraction and Validation to update field record" sap:VirtualizedContainerService.HintSize="580.6666666666666,1397.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_72">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEach x:TypeArguments="p:ResultsDataPoint" CurrentIndex="{x:Null}" DisplayName="For Each currentResultsDataPoint" sap:VirtualizedContainerService.HintSize="546.6666666666666,1262" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ExtractionResults.ResultsDocument.Fields]">
+      <ui:ForEach x:TypeArguments="p:ResultsDataPoint" CurrentIndex="{x:Null}" DisplayName="For Each currentResultsDataPoint" sap:VirtualizedContainerService.HintSize="546.6666666666666,1314.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ExtractionResults.ResultsDocument.Fields]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="p:ResultsDataPoint">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="p:ResultsDataPoint" Name="currentResultsDataPoint" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512.6666666666666,1123.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_74">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512.6666666666666,1176" sap2010:WorkflowViewState.IdRef="Sequence_74">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="FieldName" />
                 <Variable x:TypeArguments="x:String" Name="ExtractedValue" />
@@ -175,9 +175,9 @@
                   </scg:List>
                 </ui:MultipleAssign.AssignOperations>
               </ui:MultipleAssign>
-              <If Condition="[ExtractedValue &lt;&gt; ValidatedValue]" DisplayName="If - Extracted and validated values are different" sap:VirtualizedContainerService.HintSize="478.6666666666667,852.6666666666666" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[ExtractedValue &lt;&gt; ValidatedValue]" DisplayName="If - Extracted and validated values are different" sap:VirtualizedContainerService.HintSize="478.6666666666667,905.3333333333334" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
-                  <Sequence DisplayName="Then - had differences" sap:VirtualizedContainerService.HintSize="416,664.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                  <Sequence DisplayName="Then - had differences" sap:VirtualizedContainerService.HintSize="416,717.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_75">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:IList(d:ExtractionFields)" Name="extractionFieldRecord" />
                     </Sequence.Variables>
@@ -212,11 +212,16 @@
                         </scg:List>
                       </uda:QueryEntityRecords.FilterValues>
                     </uda:QueryEntityRecords>
-                    <uda:UpdateEntityRecord x:TypeArguments="d:ExtractionFields" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Update Entity Record - Extraction Fields" EntityId="237d62b9-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,250.66666666666666" sap2010:WorkflowViewState.IdRef="UpdateEntityRecord`1_1" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionFields() With {  .ValidatedValue = ValidatedValue, .Id = extractionFieldRecord.FirstOrDefault().Id }]" RecordId="[extractionFieldRecord.FirstOrDefault().Id]" TimeoutInMs="30000">
+                    <uda:UpdateEntityRecord x:TypeArguments="d:ExtractionFields" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Update Entity Record - Extraction Fields" EntityId="237d62b9-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,303.3333333333333" sap2010:WorkflowViewState.IdRef="UpdateEntityRecord`1_1" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionFields() With {  .Corrected = true,  .ValidatedValue = ValidatedValue, .Id = extractionFieldRecord.FirstOrDefault().Id }]" RecordId="[extractionFieldRecord.FirstOrDefault().Id]" TimeoutInMs="30000">
                       <uda:UpdateEntityRecord.State>
                         <udam:RecordState>
                           <udam:RecordState.SelectedFields>
-                            <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="1">
+                            <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="2">
+                              <udam:DynamicEntityField Id="72810acd-ebc3-f011-8196-00224882fdd3" Name="Corrected">
+                                <udam:DynamicEntityField.ArgumentValue>
+                                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                </udam:DynamicEntityField.ArgumentValue>
+                              </udam:DynamicEntityField>
                               <udam:DynamicEntityField Id="41ce5ceb-ccc0-f011-8196-00224882fdd3" Name="ValidatedValue">
                                 <udam:DynamicEntityField.ArgumentValue>
                                   <InArgument x:TypeArguments="x:String">[ValidatedValue]</InArgument>
