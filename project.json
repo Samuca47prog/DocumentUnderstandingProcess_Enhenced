@@ -17,7 +17,7 @@
       "serviceDocument": ".entities/EntitiesStore.json",
       "tenantName": "Earth",
       "namespace": "DocumentUnderstandingProcess_Enhenced",
-      "uniqueReference": "kwl0x23dVxzS3Q5pQLm2mlRbRl1lisOogUkS0UE+KCQ="
+      "uniqueReference": "65n3jBNfKgHo3EXvoJJydhAV+1fARVOV2aUAoqRYqNM="
     }
   ],
   "schemaVersion": "4.0",
@@ -174,17 +174,17 @@
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "4a18a643-cbec-426e-b916-6138eb2babec",
-        "testCaseType": "TestCase",
-        "executionTemplateInvokeIsolated": false,
-        "fileName": "DataService\\DataService_CreateDocumentUnderstandingRecord_TestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
         "testCaseId": "286b9ca2-b259-452f-912a-574a2b93179f",
         "testCaseType": "TestCase",
         "executionTemplateInvokeIsolated": false,
         "fileName": "DataService\\Helper_CheckValidatedClassificaitonHasDifferences_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "4a18a643-cbec-426e-b916-6138eb2babec",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "DataService\\20_DataService_Create_DocumentRecord_TestCase.xaml"
       }
     ],
     "saveToCloud": false

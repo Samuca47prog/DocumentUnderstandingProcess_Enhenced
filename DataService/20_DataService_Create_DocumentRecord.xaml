@@ -1,8 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DataService_CreateDocumentUnderstandingRecord" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DataService_CreateDocumentUnderstandingRecord" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TargetDocument" Type="InArgument(x:String)" />
-    <x:Property Name="out_DocumentRecord" Type="OutArgument(d:DocumentUnderstanding)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_DOM" Type="InArgument(p:Document)" />
+    <x:Property Name="out_DocumentRecordId" Type="OutArgument(s:Guid)" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -41,6 +42,9 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,15 +114,20 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1411.3333333333333,1032" sap2010:WorkflowViewState.IdRef="Sequence_5">
+  <Sequence sap:VirtualizedContainerService.HintSize="1313.3333333333333,1199.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="d:DocumentUnderstanding" Name="DocumentRecord" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Create Document Understanding Record" sap:VirtualizedContainerService.HintSize="536,1009.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Create Document Record" sap:VirtualizedContainerService.HintSize="536,1176.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int64" Name="totalQueriedRecords" />
         <Variable x:TypeArguments="scg:IList(d:DocumentUnderstanding)" Name="outputQueriedRecords" />
@@ -129,7 +138,6 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:Comment DisplayName="SUGGESTION - Document Understanding unique id" sap:VirtualizedContainerService.HintSize="502,108" sap2010:WorkflowViewState.IdRef="Comment_3" Text="It is a good idea to add another field as unique reference for the document." />
       <uda:QueryEntityRecords x:TypeArguments="d:DocumentUnderstanding" ContinueOnError="False" DisplayName="Query Entity Records - Document Understanding" EntityId="c630dbd6-f1b4-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="502,177.33333333333334" sap2010:WorkflowViewState.IdRef="QueryEntityRecords`1_1" OutputRecords="[outputQueriedRecords]" QueriedEntityId="c630dbd6-f1b4-f011-8e61-0022488a8a0d" Skip="0" SortAscending="True" SortByField="Id" TimeoutInMs="30000" Top="100" TotalRecords="[totalQueriedRecords]">
         <uda:QueryEntityRecords.FilterArguments>
           <uda:FilterArgument FilterActivityType="{x:Null}">
@@ -155,19 +163,19 @@
           </scg:List>
         </uda:QueryEntityRecords.FilterValues>
       </uda:QueryEntityRecords>
-      <If Condition="[totalQueriedRecords = 0]" DisplayName="If - Document name was not found" sap:VirtualizedContainerService.HintSize="502,641.3333333333334" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[totalQueriedRecords = 0]" DisplayName="If - Document name was not found" sap:VirtualizedContainerService.HintSize="502,808.6666666666666" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
-          <Sequence DisplayName="Then - Create new record" sap:VirtualizedContainerService.HintSize="416,310.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Then - Create new record" sap:VirtualizedContainerService.HintSize="416,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uda:CreateEntityRecord x:TypeArguments="d:DocumentUnderstanding" InputEntity="{x:Null}" IsInRecordView="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Create Entity Record" EntityId="c630dbd6-f1b4-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,250.66666666666666" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_1" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.DocumentUnderstanding() With {  .logKey = in_Config(&quot;logKey&quot;),  .TargetFile = in_TargetDocument }]" OutputEntity="[out_DocumentRecord]" TimeoutInMs="30000">
+            <uda:CreateEntityRecord x:TypeArguments="d:DocumentUnderstanding" InputEntity="{x:Null}" IsInRecordView="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Create Entity Record" EntityId="c630dbd6-f1b4-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="382,408.6666666666667" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_1" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.DocumentUnderstanding() With {  .logKey = in_Config(&quot;logKey&quot;),  .TargetFile = in_TargetDocument,  .ContentType = in_DOM.ContentType,  .PageCount = in_DOM.Pages.Count,  .TextLength = in_DOM.Length }]" OutputEntity="[DocumentRecord]" TimeoutInMs="30000">
               <uda:CreateEntityRecord.State>
                 <udam:RecordState RequiredFieldCount="2">
                   <udam:RecordState.SelectedFields>
-                    <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="2">
+                    <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="5">
                       <udam:DynamicEntityField Id="323c65af-b0b5-f011-8e61-0022488a8a0d" IsRequired="True" Name="logKey">
                         <udam:DynamicEntityField.ArgumentValue>
                           <InArgument x:TypeArguments="x:String">[in_Config("logKey")]</InArgument>
@@ -176,6 +184,21 @@
                       <udam:DynamicEntityField Id="d030dbd6-f1b4-f011-8e61-0022488a8a0d" IsRequired="True" Name="TargetFile">
                         <udam:DynamicEntityField.ArgumentValue>
                           <InArgument x:TypeArguments="x:String">[in_TargetDocument]</InArgument>
+                        </udam:DynamicEntityField.ArgumentValue>
+                      </udam:DynamicEntityField>
+                      <udam:DynamicEntityField Id="f9bc1b9c-bbc3-f011-8196-00224882fdd3" Name="ContentType">
+                        <udam:DynamicEntityField.ArgumentValue>
+                          <InArgument x:TypeArguments="x:String">[in_DOM.ContentType]</InArgument>
+                        </udam:DynamicEntityField.ArgumentValue>
+                      </udam:DynamicEntityField>
+                      <udam:DynamicEntityField Id="f7bc1b9c-bbc3-f011-8196-00224882fdd3" Name="PageCount">
+                        <udam:DynamicEntityField.ArgumentValue>
+                          <InArgument x:TypeArguments="x:Decimal">[in_DOM.Pages.Count]</InArgument>
+                        </udam:DynamicEntityField.ArgumentValue>
+                      </udam:DynamicEntityField>
+                      <udam:DynamicEntityField Id="f8bc1b9c-bbc3-f011-8196-00224882fdd3" Name="TextLength">
+                        <udam:DynamicEntityField.ArgumentValue>
+                          <InArgument x:TypeArguments="x:Decimal">[in_DOM.Length]</InArgument>
                         </udam:DynamicEntityField.ArgumentValue>
                       </udam:DynamicEntityField>
                     </scg:List>
@@ -194,7 +217,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <Assign DisplayName="Assign - first document found" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
-                <OutArgument x:TypeArguments="d:DocumentUnderstanding">[out_DocumentRecord]</OutArgument>
+                <OutArgument x:TypeArguments="d:DocumentUnderstanding">[DocumentRecord]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="d:DocumentUnderstanding">[outputQueriedRecords.FirstOrDefault]</InArgument>
@@ -203,6 +226,14 @@
           </Sequence>
         </If.Else>
       </If>
+      <Assign DisplayName="Assign - Document Record Id" sap:VirtualizedContainerService.HintSize="502,108" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Guid">[out_DocumentRecordId]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Guid">[DocumentRecord.Id]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
   </Sequence>
 </Activity>

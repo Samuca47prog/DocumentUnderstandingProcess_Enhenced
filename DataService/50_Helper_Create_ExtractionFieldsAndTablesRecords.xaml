@@ -1,9 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DataService_CreateExtractionResultRecord" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Helper_CreateExtractionRecordFieldsAndTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_DocumentRecord" Type="InArgument(d:DocumentUnderstanding)" />
-    <x:Property Name="in_ExtractionResults" Type="InArgument(p:ExtractionResult)" />
-    <x:Property Name="out_ExtractionResultRecord" Type="OutArgument(d:ExtractionResult)" />
+    <x:Property Name="out_ExtractionResults" Type="InArgument(p:ExtractionResult)" />
+    <x:Property Name="out_ExtractionResultRecordId" Type="OutArgument(s:Guid)" />
+    <x:Property Name="in_DocumentRecordId" Type="InArgument(s:Guid)" />
   </x:Members>
+  <this:Helper_CreateExtractionRecordFieldsAndTables.in_DocumentRecordId>
+    <InArgument x:TypeArguments="s:Guid" />
+  </this:Helper_CreateExtractionRecordFieldsAndTables.in_DocumentRecordId>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -14,7 +17,6 @@
       <x:String>System</x:String>
       <x:String>System.Collections</x:String>
       <x:String>System.Collections.Generic</x:String>
-      <x:String>System.Linq</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
@@ -26,16 +28,15 @@
       <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
       <x:String>UiPath.DocumentProcessing.Contracts</x:String>
       <x:String>UiPath.SmartData.PositionBasedExtraction.Storage</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.IntelligentOCR.Activities</x:String>
       <x:String>UiPath.DU.Shared.Utils</x:String>
-      <x:String>UiPath.DataService.Activities</x:String>
       <x:String>UiPath.DataService.Definition</x:String>
-      <x:String>UiPath.DataService.Activities.Models</x:String>
       <x:String>DocumentUnderstandingProcess_Enhenced</x:String>
-      <x:String>UiPath</x:String>
       <x:String>System.Data</x:String>
       <x:String>System.Diagnostics</x:String>
       <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
       <x:String>System.Xml</x:String>
       <x:String>System.Xml.Linq</x:String>
       <x:String>System.IO</x:String>
@@ -43,6 +44,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -107,59 +109,56 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.CompilerServices.VisualC</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1330.6666666666665,568.04" sap2010:WorkflowViewState.IdRef="Sequence_10">
+  <Sequence sap:VirtualizedContainerService.HintSize="1330.6666666666665,775.3733333333332" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Create extraction result record" sap:VirtualizedContainerService.HintSize="450,491.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <Sequence DisplayName="Create Extraction Record" sap:VirtualizedContainerService.HintSize="468,722.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="d:ExtractionResult" Name="ExtractionResultsRecord" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uda:CreateEntityRecord x:TypeArguments="d:ExtractionResult" InputEntity="{x:Null}" IsInRecordView="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Create Entity Record - Extraction Results" EntityId="6da0d621-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="416,408.6666666666667" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_1" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionResult() With {  .Bounds = Newtonsoft.Json.JsonConvert.SerializeObject(in_ExtractionResults.ResultsDocument.Bounds),  .BusinessRules = Newtonsoft.Json.JsonConvert.SerializeObject(in_ExtractionResults.BusinessRulesResults),  .DocumentId = new DocumentUnderstanding() With { .Id = in_DocumentRecord.Id },  .DocumentTypeId = in_ExtractionResults.ResultsDocument.DocumentTypeId,  .Language = in_ExtractionResults.ResultsDocument.Language }]" OutputEntity="[out_ExtractionResultRecord]" TimeoutInMs="30000">
-        <uda:CreateEntityRecord.State>
-          <udam:RecordState>
-            <udam:RecordState.SelectedFields>
-              <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="5">
-                <udam:DynamicEntityField Id="79a0d621-60b6-f011-8e61-0022488a8a0d" Name="Bounds">
-                  <udam:DynamicEntityField.ArgumentValue>
-                    <InArgument x:TypeArguments="x:String">[Newtonsoft.Json.JsonConvert.SerializeObject(out_ExtractionResults.ResultsDocument.Bounds)]</InArgument>
-                  </udam:DynamicEntityField.ArgumentValue>
-                </udam:DynamicEntityField>
-                <udam:DynamicEntityField Id="f7fb1c46-62b6-f011-8e61-0022488a8a0d" Name="BusinessRules">
-                  <udam:DynamicEntityField.ArgumentValue>
-                    <InArgument x:TypeArguments="x:String">[Newtonsoft.Json.JsonConvert.SerializeObject(out_ExtractionResults.BusinessRulesResults)]</InArgument>
-                  </udam:DynamicEntityField.ArgumentValue>
-                </udam:DynamicEntityField>
-                <udam:DynamicEntityField Id="77a0d621-60b6-f011-8e61-0022488a8a0d" Name="DocumentId">
-                  <udam:DynamicEntityField.ArgumentValue>
-                    <InArgument x:TypeArguments="s:Guid">[in_DocumentRecord.Id]</InArgument>
-                  </udam:DynamicEntityField.ArgumentValue>
-                </udam:DynamicEntityField>
-                <udam:DynamicEntityField Id="7ba0d621-60b6-f011-8e61-0022488a8a0d" Name="DocumentTypeId">
-                  <udam:DynamicEntityField.ArgumentValue>
-                    <InArgument x:TypeArguments="x:String">[out_ExtractionResults.ResultsDocument.DocumentTypeId]</InArgument>
-                  </udam:DynamicEntityField.ArgumentValue>
-                </udam:DynamicEntityField>
-                <udam:DynamicEntityField Id="7aa0d621-60b6-f011-8e61-0022488a8a0d" Name="Language">
-                  <udam:DynamicEntityField.ArgumentValue>
-                    <InArgument x:TypeArguments="x:String">[out_ExtractionResults.ResultsDocument.Language]</InArgument>
-                  </udam:DynamicEntityField.ArgumentValue>
-                </udam:DynamicEntityField>
-              </scg:List>
-            </udam:RecordState.SelectedFields>
-          </udam:RecordState>
-        </uda:CreateEntityRecord.State>
-      </uda:CreateEntityRecord>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="51_DataService_Create_ExtractionResultRecord - Invoke Workflow File (DataService\DataService_CreateExtractionResultRecord.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\51_DataService_Create_ExtractionResultRecord.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="p:ExtractionResult" x:Key="in_ExtractionResults">[out_ExtractionResults]</InArgument>
+          <OutArgument x:TypeArguments="d:ExtractionResult" x:Key="out_ExtractionResultRecord">[ExtractionResultsRecord]</OutArgument>
+          <InArgument x:TypeArguments="s:Guid" x:Key="in_DocumentRecordId">[in_DocumentRecordId]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="52_DataService_Create_ExtractionFieldsRecords - Invoke Workflow File (DataService\DataService_CreateExtractionFields.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="DataService\52_DataService_Create_ExtractionFieldsRecords.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="p:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
+          <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="53_DataService_Create_ExtractionTablesRecords - Invoke Workflow File (DataService\DataService_CreateExtractionTables.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="DataService\53_DataService_Create_ExtractionTablesRecords.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="p:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
+          <InArgument x:TypeArguments="d:ExtractionResult" x:Key="ExtractionResultsRecord">[ExtractionResultsRecord]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <Assign DisplayName="Assign - Extraction Result Id" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Guid">[out_ExtractionResultRecordId]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Guid">[ExtractionResultsRecord.Id]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
   </Sequence>
 </Activity>

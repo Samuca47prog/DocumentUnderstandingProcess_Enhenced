@@ -1,9 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Helper_CheckAndCreateClassificationResultValidation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_61_Update_ExtractionResult_ValidatedField" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="validatedClassificationResults" Type="InArgument(p:ClassificationResult[])" />
-    <x:Property Name="classificationResultsArray" Type="InArgument(p:ClassificationResult[])" />
-    <x:Property Name="DocumentRecord" Type="InArgument(d:DocumentUnderstanding)" />
-    <x:Property Name="config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_ExtractionResultsRecordId" Type="InArgument(s:Guid)" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -15,19 +12,16 @@
       <x:String>System.Collections</x:String>
       <x:String>System.Collections.Generic</x:String>
       <x:String>System.Linq</x:String>
-      <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
-      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
-      <x:String>UiPath.DocumentProcessing.Contracts.Taxonomy</x:String>
       <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
-      <x:String>UiPath.IntelligentOCR.Activities.ValidationStation</x:String>
-      <x:String>UiPath.IntelligentOCR.Activities.DocumentClassification</x:String>
       <x:String>DocumentUnderstandingProcess_Enhenced</x:String>
       <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>UiPath.DataService.Activities</x:String>
+      <x:String>UiPath.DataService.Activities.Models</x:String>
       <x:String>System.Activities.Expressions</x:String>
       <x:String>System.Data</x:String>
       <x:String>System.Diagnostics</x:String>
@@ -36,6 +30,7 @@
       <x:String>System.Xml.Linq</x:String>
       <x:String>System.IO</x:String>
       <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
     </sco:Collection>
@@ -111,64 +106,33 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_78">
+  <Sequence sap:VirtualizedContainerService.HintSize="1330.6666666666665,775.3733333333332" sap2010:WorkflowViewState.IdRef="Sequence_82">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Check And Create Classification Result Validation" sap:VirtualizedContainerService.HintSize="450,57.333333333333336" sap2010:WorkflowViewState.IdRef="Sequence_73">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:Boolean" Name="hasClassificationDifferences" />
-      </Sequence.Variables>
+    <Sequence DisplayName="Update Validated field" sap:VirtualizedContainerService.HintSize="450,333.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_81">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Helper_CheckValidatedClassificaitonHasDifferences - Invoke Workflow File (DataService\Helper_CheckValidatedClassificaitonHasDifferences.xaml)" sap:VirtualizedContainerService.HintSize="450,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_95" UnSafe="False" WorkflowFileName="DataService\Helper_CheckValidatedClassificaitonHasDifferences.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="p:ClassificationResult[]" x:Key="in_ValidatedClassificationResults">[validatedClassificationResults]</InArgument>
-          <InArgument x:TypeArguments="p:ClassificationResult[]" x:Key="in_ClassificationResultsArray">[classificationResultsArray]</InArgument>
-          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasClassificationDifferences">[hasClassificationDifferences]</OutArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-      <If Condition="[hasClassificationDifferences]" DisplayName="If - Has classification differences" sap:VirtualizedContainerService.HintSize="450,794.6666666666666" sap2010:WorkflowViewState.IdRef="If_12">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,404.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_76">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_95" Level="Trace" Message="[&quot;Saving validated classification results&quot;]" />
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateClassificationValidationRecord - Invoke Workflow File (DataService\DataService_CreateClassificationValidationRecord.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_98" UnSafe="False" WorkflowFileName="DataService\DataService_CreateClassificationValidationRecord.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="p:ClassificationResult[]" x:Key="validatedClassificationResults">[validatedClassificationResults]</InArgument>
-                <InArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="DocumentRecord">[DocumentRecord]</InArgument>
-                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="config">[config]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_77">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_96" Level="Trace" Message="[&quot;Validated classification had no differences&quot;]" />
-          </Sequence>
-        </If.Else>
-      </If>
+      <uda:UpdateEntityRecord x:TypeArguments="d:ExtractionResult" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Update Entity Record - Extraction Record" EntityId="6da0d621-60b6-f011-8e61-0022488a8a0d" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="416,250.66666666666666" sap2010:WorkflowViewState.IdRef="UpdateEntityRecord`1_3" InputEntityInFieldView="[new DocumentUnderstandingProcess_Enhenced.ExtractionResult() With {  .Validated = true, .Id = in_ExtractionResultsRecordId }]" RecordId="[in_ExtractionResultsRecordId]" TimeoutInMs="30000">
+        <uda:UpdateEntityRecord.State>
+          <udam:RecordState>
+            <udam:RecordState.SelectedFields>
+              <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="1">
+                <udam:DynamicEntityField Id="3563bf40-cec0-f011-8196-00224882fdd3" Name="Validated">
+                  <udam:DynamicEntityField.ArgumentValue>
+                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                  </udam:DynamicEntityField.ArgumentValue>
+                </udam:DynamicEntityField>
+              </scg:List>
+            </udam:RecordState.SelectedFields>
+          </udam:RecordState>
+        </uda:UpdateEntityRecord.State>
+      </uda:UpdateEntityRecord>
     </Sequence>
   </Sequence>
 </Activity>

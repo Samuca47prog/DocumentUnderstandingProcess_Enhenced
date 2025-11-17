@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_20_Digitize" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p1="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:p2="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_20_Digitize" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p1="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:p2="http://schemas.uipath.com/workflow/activities/ocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="The file path of the target document that is going to be processed." Name="in_TargetDocument" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
@@ -6,8 +6,11 @@
     <x:Property sap2010:Annotation.AnnotationText="Used to control the amount of time between retries in the Retry Scope activity." Name="in_RetryInterval" Type="InArgument(x:TimeSpan)" />
     <x:Property sap2010:Annotation.AnnotationText="The Document Object Model (DOM) of the target document." Name="out_DOM" Type="OutArgument(p:Document)" />
     <x:Property sap2010:Annotation.AnnotationText="The text extracted from the target document." Name="out_DocText" Type="OutArgument(x:String)" />
-    <x:Property Name="out_DocumentRecord" Type="OutArgument(d:DocumentUnderstanding)" />
+    <x:Property Name="out_DocumentRecordId" Type="InArgument(s:Guid)" />
   </x:Members>
+  <this:_20_Digitize.out_DocumentRecordId>
+    <InArgument x:TypeArguments="s:Guid" />
+  </this:_20_Digitize.out_DocumentRecordId>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -57,6 +60,8 @@
       <x:String>UiPath.DataService.Activities</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -125,9 +130,11 @@
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Digitizes the specified file. OCR engine is process-dependant!&#xA;&#xA;Any pre-processing logic that should be executed prior to digitization belongs here." DisplayName="Digitize" sap:VirtualizedContainerService.HintSize="1411.3333333333333,1333.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Digitizes the specified file. OCR engine is process-dependant!&#xA;&#xA;Any pre-processing logic that should be executed prior to digitization belongs here." DisplayName="Digitize" sap:VirtualizedContainerService.HintSize="1313.3333333333333,1333.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -135,16 +142,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - DigitizationStarted" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[in_Config(&quot;LogMessage_DigitizationStarted&quot;) + &quot; &quot; + Path.GetFileName(in_TargetDocument) + Environment.NewLine + in_Config(&quot;logKey&quot;)]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataService_CreateDocumentUnderstandingRecord - Invoke Workflow File (DataService\DataService_CreateDocumentUnderstandingRecord.xaml)" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\DataService_CreateDocumentUnderstandingRecord.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TargetDocument">[in_TargetDocument]</InArgument>
-        <OutArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="out_DocumentRecord">[out_DocumentRecord]</OutArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
     <ui:Comment DisplayName="Comment Pre-Digitization" sap:VirtualizedContainerService.HintSize="416,127.33333333333333" sap2010:WorkflowViewState.IdRef="Comment_1" Text="If needed, any pre-digitization processing meant to help improve OCR results belongs here. Eg: grayscaling" />
     <ui:Comment DisplayName="Note About Retry Mechanism" sap:VirtualizedContainerService.HintSize="416,146.66666666666666" sap2010:WorkflowViewState.IdRef="Comment_2" Text="An OCR engine that uses a paid license might incur extra costs when re-executing. This should be taken into consideration for the number of retries." />
-    <ui:RetryScope sap2010:Annotation.AnnotationText="OCR engines might need to make API calls. The retry mechanism is used to compensate for minor fluctuatios in network stability and other recoverable issues.&#xA;&#xA;MaxExecutionAttemptsDigitize overrides the default number of execution attempts." ContinueOnError="False" DisplayName="Retry Scope - Digitize" sap:VirtualizedContainerService.HintSize="416,620.6666666666666" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Config(&quot;MaxExecutionAttemptsDigitize&quot;))]" RetryInterval="[in_RetryInterval]">
+    <ui:RetryScope sap2010:Annotation.AnnotationText="OCR engines might need to make API calls. The retry mechanism is used to compensate for minor fluctuatios in network stability and other recoverable issues.&#xA;&#xA;MaxExecutionAttemptsDigitize overrides the default number of execution attempts." ContinueOnError="False" DisplayName="Retry Scope - Digitize" sap:VirtualizedContainerService.HintSize="416,630" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Config(&quot;MaxExecutionAttemptsDigitize&quot;))]" RetryInterval="[in_RetryInterval]">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
           <p1:DigitizeDocument ApplyOcrMigrated="True" ApplyOcrOnPdf="Auto" DegreeOfParallelism="-1" DetectCheckboxes="True" DisplayName="Digitize Document - Digitize" DocumentObjectModel="[out_DOM]" DocumentPath="[in_TargetDocument]" DocumentText="[out_DocText]" ForceApplyOCR="False" sap:VirtualizedContainerService.HintSize="334,307.3333333333333" sap2010:WorkflowViewState.IdRef="DigitizeDocument_1">
@@ -176,5 +176,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RetryScope>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20_DataService_Create_DocumentRecord - Invoke Workflow File (DataService\DataService_CreateDocumentUnderstandingRecord.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DataService\20_DataService_Create_DocumentRecord.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TargetDocument">[in_TargetDocument]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="p:Document" x:Key="in_DOM">[out_DOM]</InArgument>
+        <OutArgument x:TypeArguments="s:Guid" x:Key="out_DocumentRecordId">[out_DocumentRecordId]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>

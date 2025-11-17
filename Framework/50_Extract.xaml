@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_50_Extract" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DocumentUnderstandingProcess_Enhenced;assembly=DataService.DocumentUnderstandingProcess_Enhenced" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/taxonomy" xmlns:p1="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p2="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:p3="http://schemas.uipath.com/workflow/activities/intelligentocr/extraction" xmlns:p4="http://schemas.uipath.com/workflow/activities/document-processing-contracts/extraction" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_50_Extract" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/taxonomy" xmlns:p1="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p2="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:p3="http://schemas.uipath.com/workflow/activities/intelligentocr/extraction" xmlns:p4="http://schemas.uipath.com/workflow/activities/document-processing-contracts/extraction" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="The file path of the target document that is going to be processed." Name="in_TargetDocument" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Stores the project taxonomy against which the documents can be processed." Name="in_DocTaxonomy" Type="InArgument(p:DocumentTaxonomy)" />
@@ -9,9 +9,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Used to control the number of attempts of retrying in case of a system exception." Name="in_MaxAttempts" Type="InArgument(x:Int32)" />
     <x:Property sap2010:Annotation.AnnotationText="Used to control the amount of time between retries in the Retry Scope activity." Name="in_RetryInterval" Type="InArgument(x:TimeSpan)" />
     <x:Property sap2010:Annotation.AnnotationText="The results of the data extraction process." Name="out_ExtractionResults" Type="OutArgument(p2:ExtractionResult)" />
-    <x:Property Name="in_DocumentRecord" Type="InArgument(d:DocumentUnderstanding)" />
     <x:Property Name="out_ExtractionResultsRecordId" Type="OutArgument(s:Guid)" />
+    <x:Property Name="in_DocumentRecordId" Type="InArgument(s:Guid)" />
   </x:Members>
+  <this:_50_Extract.in_DocumentRecordId>
+    <InArgument x:TypeArguments="s:Guid" />
+  </this:_50_Extract.in_DocumentRecordId>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -332,11 +335,11 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:RetryScope>
     <ui:Comment sap:VirtualizedContainerService.HintSize="958.6666666666666,146.66666666666666" sap2010:WorkflowViewState.IdRef="Comment_1" Text="An Extractor that uses a paid license might incur extra costs when re-executing. This should be taken into consideration for the number of retries." />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Helper_CreateExtractionRecordFieldsAndTables - Invoke Workflow File (DataService\Helper_CreateExtractionRecordFieldsAndTables.xaml)" sap:VirtualizedContainerService.HintSize="958.6666666666666,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DataService\Helper_CreateExtractionRecordFieldsAndTables.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="50_Helper_Create_ExtractionFieldsAndTablesRecords - Invoke Workflow File (DataService\Helper_CreateExtractionRecordFieldsAndTables.xaml)" sap:VirtualizedContainerService.HintSize="958.6666666666666,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DataService\50_Helper_Create_ExtractionFieldsAndTablesRecords.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="d:DocumentUnderstanding" x:Key="in_DocumentRecord">[in_DocumentRecord]</InArgument>
         <InArgument x:TypeArguments="p2:ExtractionResult" x:Key="out_ExtractionResults">[out_ExtractionResults]</InArgument>
         <OutArgument x:TypeArguments="s:Guid" x:Key="out_ExtractionResultRecordId">[out_ExtractionResultsRecordId]</OutArgument>
+        <InArgument x:TypeArguments="s:Guid" x:Key="in_DocumentRecordId">[in_DocumentRecordId]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
