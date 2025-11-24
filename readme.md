@@ -57,7 +57,7 @@ This threshold filters out very low-confidence classifications. If a document’
 ![minumum confidence](docs/images/3_red_line.png)
 Minumim confidences can be set in the Classification Document Scope or in the Data Extraction Scope activities.
 
-### Reducinf HITL Interactions
+### Reducing HITL Interactions
 Using these two thresholds, you can reduce HITL volume by:
 * Setting the **validation threshold** higher than the **highest confidence** of any document you want to **dismiss**.
 * Setting the **minimum confidence** lower than the **lowest confidence** of any document that was **correctly** classified.
@@ -160,6 +160,16 @@ EXTRACTIONRESULT ||--o{ EXTRACTIONTABLES : "via ExtractionResult"
 ```
 
 Find the Schema for Data Service in the [Docs/Schema.json](docs/Schema.json)
+
+This entity relationship tries to setup data to asnwer the following main questions:
+- What the model previewed? 
+- What confidence it was?
+- What was validated by a human?
+
+Notes:
+1. Extraction results have Fields and Tables because they tables have names, headers, columns and rows, but fields not.
+2. Extraction validations are a field inside its own entity because the schema of extraction do not change after validation (it is not possible to add a new field that was not already in the taxonomy in extraction)
+3. Classification have two separate entities because in a multiple documents per file scenario, the classifications for each page can vary a lot and scenarios where the model previewed one classification but the human validated with 2 can exists.
 
 ## Implementation
 
