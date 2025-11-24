@@ -27,6 +27,55 @@ it is recommended you publish it manually to a nuget or copy/paste everything in
 
 ----
 
+# Why storing Document Understanding data?
+
+In production, Document Understanding (DU) models use the knowledge gained during training to classify and extract information from new documents. Ideally, these models are trained with samples that reflect what they will see in production. However, document templates, layouts, or formats often change — and new document types may appear over time.
+
+To keep models accurate, we need to track and analyze how these changes affect model performance. Storing production data allows us to:
+
+* Identify which templates or document types cause misclassifications.
+* Evaluate when retraining is necessary.
+* Optimize confidence thresholds to reduce the number of Human-in-the-Loop (HITL) validations.
+
+
+## Example: Optimizing Confidence Thresholds
+
+Let’s consider a classification model. Suppose it performs reliably when the confidence is above 80%, but between 50% and 70% results vary — some classifications are correct, others not.
+
+This gray area represents uncertainty in the model’s predictions:
+![Showing gray area in between 50% and 80%](docs/images/1_scenario.png)
+
+To handle this effectively, we can define two thresholds: One for validation and other for the minimum confidence value.
+
+### 1. Validation threshold
+Documents with a classification confidence below this threshold are sent for human validation. For example, setting the validation threshold to 80% ensures low-confidence predictions are reviewed.
+![validation line](docs/images/2_yellow_line.png)
+This value can be set in the Business Rules, for classification or for extraction. When the value is below the threshold, the flag to sent for validation needs to be set to True.
+
+### 2. Minimum Confidence threshold
+This threshold filters out very low-confidence classifications. If a document’s confidence is below this minimum, it will be dismissed and will not continue in the process.
+![minumum confidence](docs/images/3_red_line.png)
+Minumim confidences can be set in the Classification Document Scope or in the Data Extraction Scope activities.
+
+### Reducinf HITL Interactions
+Using these two thresholds, you can reduce HITL volume by:
+* Setting the **validation threshold** higher than the **highest confidence** of any document you want to **dismiss**.
+* Setting the **minimum confidence** lower than the **lowest confidence** of any document that was **correctly** classified.
+
+Note: These values should be adjusted based on your project goals.
+If your priority is to minimize human effort — even at the cost of missing some classifications — you can raise the minimum confidence threshold.
+
+## Benefits of Data Storage
+By storing Document Understanding data in a data service:
+* You retain a history of model performance across document variations.
+* You enable data-driven threshold tuning.
+* You support continuous learning and model retraining based on real production behavior.
+
+
+# Data Service implementation
+
+
+
 
 # Entities diagram
 

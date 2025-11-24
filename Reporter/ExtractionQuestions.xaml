@@ -191,7 +191,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;3. Lowest field confidence without validation correction&quot; + Environment.NewLine + &#xD;&#xA;&quot;A: &quot; + in_FieldName + &quot;: &quot; + extractionFieldsRecords.Where(Function(fn) fn.Name.Equals(in_FieldName)).Where(Function(fv) fv.Corrected.Equals(False)).OrderByDescending(Function(fc) fc.Confidence).LastOrDefault().Confidence.ToString]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;3. Lowest field confidence without validation correction&quot; + Environment.NewLine + &#xD;&#xA;&quot;A: &quot; + in_FieldName + &quot;: &quot; + extractionFieldsRecords.Where(Function(fn) fn.Name.Equals(in_FieldName)).Where(Function(fv) fv.Corrected.Value.Equals(False)).OrderByDescending(Function(fc) fc.Confidence).LastOrDefault().Confidence.ToString]" />
       </Sequence>
       <Sequence DisplayName="4. Highest field confidence with validation correction?" sap:VirtualizedContainerService.HintSize="450,250" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
@@ -199,7 +199,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;4. Highest field confidence with validation correction?&quot; + Environment.NewLine + &#xD;&#xA;&quot;A: &quot; + in_FieldName + &quot;: &quot; + extractionFieldsRecords.Where(Function(fn) fn.Name.Equals(in_FieldName)).Where(Function(fv) fv.Corrected.Equals(True)).OrderByDescending(Function(fc) fc.Confidence).FirstOrDefault().Confidence.ToString]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;4. Highest field confidence with validation correction?&quot; + Environment.NewLine + &#xD;&#xA;&quot;A: &quot; + in_FieldName + &quot;: &quot; + extractionFieldsRecords.Where(Function(fn) fn.Name.Equals(in_FieldName)).Where(Function(fv) fv.Corrected.Value.Equals(True)).OrderByDescending(Function(fc) fc.Confidence).FirstOrDefault().Confidence.ToString]" />
       </Sequence>
     </Sequence>
   </Sequence>
