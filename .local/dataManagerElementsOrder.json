@@ -1,0 +1,301 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/DataService_CreateExtractionFields.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "extractionFieldsList&Sequence_12",
+        "extractionFields&Sequence_3",
+        "failedRecords&Sequence_13",
+        "outputRecords&Sequence_13"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_ExtractionResults",
+        "ExtractionResultsRecord"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/DataService_CreateExtractionTables.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "extractionTablesList&Sequence_16",
+        "outputRecords&Sequence_16",
+        "failedRecords&Sequence_16",
+        "extractionTables&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_ExtractionResults",
+        "ExtractionResultsRecord"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main-Attended.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "extractionResultsRecordId&Flowchart_13",
+        "config&Sequence_9",
+        "maxAttempts&Sequence_9",
+        "retryInterval&Sequence_9",
+        "TransactionItem&Sequence_9",
+        "docTaxonomy&Flowchart_10",
+        "docText&Flowchart_10",
+        "dom&Flowchart_10",
+        "classificationResultsArray&Flowchart_10",
+        "classificationSuccessFlag&Flowchart_10",
+        "DocumentRecord&Flowchart_10",
+        "index&Flowchart_10",
+        "validatedClassificationResults&Sequence_51",
+        "currentPageRange&TryCatch_6",
+        "extractionResults&TryCatch_6",
+        "extractionSuccessFlag&Flowchart_13",
+        "validatedExtractionResults&Sequence_65"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile",
+        "in_UseQueue"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/50_Extract.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetDocument",
+        "in_DocTaxonomy",
+        "in_DOM",
+        "in_DocText",
+        "in_ClassificationResult",
+        "in_Config",
+        "in_MaxAttempts",
+        "in_RetryInterval",
+        "out_ExtractionResults",
+        "in_DocumentRecord"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/Helper_CreateExtractionRecordFieldsAndTables.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ExtractionResultsRecord&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_ExtractionResultRecordId",
+        "in_DocumentRecord",
+        "out_ExtractionResults"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main-ActionCenter.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "DocumentRecordId&Flowchart_10",
+        "extractionResultsRecordId&Flowchart_11",
+        "config&Sequence_9",
+        "maxAttempts&Sequence_9",
+        "retryInterval&Sequence_9",
+        "TransactionItem&Sequence_9",
+        "docTaxonomy&Flowchart_10",
+        "docText&Flowchart_10",
+        "dom&Flowchart_10",
+        "classificationResultsArray&Flowchart_10",
+        "classificationSuccessFlag&Flowchart_10",
+        "validatedClassificationResults&Sequence_51",
+        "classificationAction&Sequence_51",
+        "currentPageRange&TryCatch_4",
+        "extractionResults&TryCatch_4",
+        "extractionSuccessFlag&Flowchart_11",
+        "validatedExtractionResults&Sequence_58",
+        "validationAction&Sequence_58"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile",
+        "in_UseQueue"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/BatchTestingUtilities/LoadExtractionFromCache.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "cachePath&Sequence_1",
+        "auxStr&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile",
+        "in_Taxonomy",
+        "in_Config",
+        "in_Dom",
+        "in_DocText",
+        "in_ClassificationResultsArray",
+        "in_ExtractionResultsIndex",
+        "out_ExtractionResults"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/50_Extraction/Extraction.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "docTaxonomy&Sequence_14",
+        "dom&Sequence_14",
+        "docText&Sequence_14",
+        "config&Sequence_14",
+        "classificationResultsArray&Sequence_14",
+        "maxAttempts&Sequence_14",
+        "retryInterval&Sequence_14",
+        "extractionResultIndex&Sequence_14",
+        "cachedExtractionResults&Sequence_14",
+        "extractionResults&Sequence_14",
+        "skipWritingNewCacheVariable&Sequence_14"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/BatchTestingUtilities/CacheDUData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "cachePath&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile",
+        "in_DocText",
+        "in_Dom",
+        "in_ClassificationResultsArray",
+        "in_ExtractionResultsIndex",
+        "in_ExtractionResults"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/35_ClassificationValidation/ClassificationBRConfidence.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "config&Sequence_1",
+        "docTaxonomy&Sequence_1",
+        "maxAttempts&Sequence_1",
+        "retryInterval&Sequence_1",
+        "classificationResultsArray&Sequence_1",
+        "classificationSuccessFlag&Sequence_1",
+        "dom&Sequence_1",
+        "docText&Sequence_1",
+        "expectedResult&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TargetFile",
+        "in_ExpectedResult",
+        "in_ClassifyResultConfidence"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/Helper_CheckAndUpdateExtractionResult.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "extractionTableRecord&Sequence_78",
+        "TableName&Sequence_77",
+        "ColumnIndex&Sequence_77",
+        "RowIndex&Sequence_77",
+        "FieldName&Sequence_74",
+        "ExtractedValue&Sequence_74",
+        "ValidatedValue&Sequence_74",
+        "extractionFieldRecord&Sequence_75",
+        "ExtractedValue&Sequence_77",
+        "ValidatedValue&Sequence_77"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ExtractionResults",
+        "in_ValidatedExtractionResults",
+        "in_ExtractionResultsRecordId"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Reporter/ExtractionQuestions.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "extractionResultRecords&Sequence_1",
+        "extractionFieldsRecords&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_DocumentTypeId",
+        "in_FieldName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/62_Update_ExtractionFieldsResult_ValidatedFields.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "FieldName&Sequence_74",
+        "ExtractedValue&Sequence_74",
+        "ValidatedValue&Sequence_74",
+        "extractionFieldRecord&Sequence_75"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ExtractionResults",
+        "in_ValidatedExtractionResults",
+        "in_ExtractionResultsRecordId"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DataService/63_Update_ExtractionTablesResult_ValidatedFields.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "TableName&Sequence_77",
+        "ExtractedValue&Sequence_77",
+        "ValidatedValue&Sequence_77",
+        "RowIndex&Sequence_77",
+        "ColumnIndex&Sequence_77",
+        "extractionTableRecord&Sequence_78"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ExtractionResults",
+        "in_ValidatedExtractionResults",
+        "in_ExtractionResultsRecordId"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Reporter/DocumentQuestions.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "totalRecords&Sequence_1",
+        "documentRecords&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

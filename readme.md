@@ -74,10 +74,9 @@ By storing Document Understanding data in a data service:
 
 # Data Service implementation
 
+Data Service was used to store Document Understanding data. It provides a structured way to persist outputs from DU workflows, enabling later analysis, reporting, and retraining.
 
-
-
-# Entities diagram
+## Entities diagram
 
 ```mermaid
 erDiagram
@@ -159,3 +158,17 @@ DOCUMENTUNDERSTANDING ||--o{ EXTRACTIONRESULT        : "via DocumentId"
 EXTRACTIONRESULT ||--o{ EXTRACTIONFIELDS : "via ExtractionResult"
 EXTRACTIONRESULT ||--o{ EXTRACTIONTABLES : "via ExtractionResult"
 ```
+
+Find the Schema for Data Service in the [Docs/Schema.json](docs/Schema.json)
+
+## Implementation
+
+Workflows here create or update records in Data Service. All of them were added to the `Data Service/` folder.
+
+Each workflow starts with the same index as the `Framework/` workflow where it is called. 
+So `20_DataService_Create_DocumentRecord.xaml` is called within `20_Digitize.xaml`. 
+
+### Reporter
+Reporters are the workflows that query the data service to answer specific questions.
+
+Check out at [Reporter.md](Reporter/Reporter.md) for more details.
